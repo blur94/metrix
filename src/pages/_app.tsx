@@ -1,6 +1,38 @@
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
+import "@/styles/globals.scss";
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+import { AppProps } from "next/app";
+import { Box, MantineProvider } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
+import { Poppins, Inter } from "next/font/google";
+
+import { cache } from "@/cache";
+import { RouterTransition } from "@/components/RouterTransitions";
+import HeadMeta from "@/components/Head";
+// import { NavHeader } from "@/components/NavBar";
+
+const inter = Inter({ subsets: ["latin"] });
+
+export default function App(props: AppProps) {
+  const { Component, pageProps } = props;
+
+  return (
+    <MantineProvider
+      withGlobalStyles
+      withNormalizeCSS
+      theme={{
+        colorScheme: "light",
+        fontFamily: `${inter.style.fontFamily}`,
+        colors: {},
+        defaultRadius: 0,
+        primaryColor: 'lime',
+      }}
+      emotionCache={cache}
+    >
+      <RouterTransition />
+      <Notifications position="top-center" />
+      <Box mt={60}>
+        <Component {...pageProps} />
+      </Box>
+    </MantineProvider>
+  );
 }
