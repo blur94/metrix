@@ -9,6 +9,9 @@ import {
   Drawer,
   ScrollArea,
   rem,
+  Flex,
+  Paper,
+  Card,
 } from "@mantine/core";
 import { MantineLogo } from "@mantine/ds";
 import { useDisclosure } from "@mantine/hooks";
@@ -112,14 +115,39 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export default function NavHeader() {
+export default function HeaderComponent() {
   const [opened, { toggle, close }] = useDisclosure(false);
   const { classes, theme } = useStyles();
 
   return (
-    <Box pos="relative" className={inter.className}>
-      <Header height={60} px="md" pos="fixed" top={0}>
-        <Group position="apart" sx={{ height: "100%" }}>
+    <Card
+      withBorder
+      pos="relative"
+      w="calc(100vw - 300px)"
+      // w="100%"
+      className={inter.className}
+    >
+      {/* <Header height={60} px="md" pos="fixed" top={0}> */}
+      <Paper
+        h={60}
+        // justify="space-between"
+        // align="center"
+        px="md"
+        pos="fixed"
+        top={0}
+        left={300}
+        // right={0}
+        w="calc(100vw - 300px)"
+        // w="100%"
+        // display="flex"
+      >
+        <Flex
+          justify="space-between"
+          align="center"
+          // pos="fixed"
+          // top={0}
+          sx={{ height: "100%", width: "100%" }}
+        >
           <Link href="/" className={classes.logoSection}>
             <MantineLogo size={30} />
           </Link>
@@ -131,9 +159,9 @@ export default function NavHeader() {
             // mr="xl"
           />
 
-          <Group
+          <Flex
             sx={{ height: "100%" }}
-            spacing={0}
+            // spacing={0}
             className={classes.hiddenMobile}
           >
             <Link href="/" className={classes.link}>
@@ -148,14 +176,20 @@ export default function NavHeader() {
             <Link href="/about" className={classes.link}>
               About
             </Link>
-          </Group>
+          </Flex>
 
-          <Group className={classes.hiddenMobile} sx={{ height: "100%" }}>
+          <Flex
+            align="center"
+            gap={10}
+            className={classes.hiddenMobile}
+            sx={{ height: "100%" }}
+          >
             <Button variant="default">Log in</Button>
             <Button>Sign up</Button>
-          </Group>
-        </Group>
-      </Header>
+          </Flex>
+        </Flex>
+      </Paper>
+      {/* </Header> */}
 
       <Drawer
         opened={opened}
@@ -195,12 +229,12 @@ export default function NavHeader() {
             color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
           />
 
-          <Group position="center" grow pb="xl" px="md">
+          <Flex justify="center" pb="xl" px="md">
             <Button variant="default">Log in</Button>
             <Button>Sign up</Button>
-          </Group>
+          </Flex>
         </ScrollArea>
       </Drawer>
-    </Box>
+    </Card>
   );
 }
