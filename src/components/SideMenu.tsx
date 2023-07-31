@@ -1,7 +1,5 @@
 import {
-  Divider,
   Flex,
-  Image,
   Navbar,
   Stack,
   Text,
@@ -11,16 +9,20 @@ import {
 } from "@mantine/core";
 import { useState } from "react";
 import {
-  IconUsers,
-  IconSettings,
-  IconFolder,
-  IconCategory,
-  IconMessageCircle,
   IconHeadphones,
   IconGift,
   IconLogout,
   IconChevronRight,
 } from "@tabler/icons-react";
+import {
+  Folder,
+  Category,
+  Bag,
+  Chat,
+  Setting,
+  TwoUsers,
+  Logout,
+} from "react-iconly";
 import Logo from "@/assets/logo.png";
 import { IconShoppingBag } from "@tabler/icons-react";
 import { useRouter } from "next/router";
@@ -28,7 +30,7 @@ import { useRouter } from "next/router";
 type CustomClassType = "link" | "active" | "gift" | "contact" | "logout";
 
 interface NavbarLinkProps {
-  icon: React.FC<any>;
+  icon: React.ReactElement;
   label: string;
   active?: boolean;
   href: string;
@@ -74,18 +76,11 @@ export default function NavBar({ opened }: { opened: boolean }) {
   const [active, setActive] = useState(0);
   const router = useRouter();
 
-  function NavbarLink({
-    icon: Icon,
-    label,
-    active,
-    onClick,
-    href,
-  }: NavbarLinkProps) {
+  function NavbarLink({ icon, label, active, onClick, href }: NavbarLinkProps) {
     const { classes, cx } = useStyles();
     return (
       <Flex
         align="center"
-        // className={cx(classes.link, { [classes.active]: active })}
         className={
           router.pathname === href
             ? `${classes.link} ${classes.active}`
@@ -95,16 +90,7 @@ export default function NavBar({ opened }: { opened: boolean }) {
         gap={10}
         pl={20}
       >
-        <UnstyledButton
-          // className={cx(classes.link, { [classes.active]: active })}
-          className={
-            router.pathname === href
-              ? `${classes.link} ${classes.active}`
-              : `${classes.link}`
-          }
-        >
-          <Icon size="15px" stroke={1.5} />
-        </UnstyledButton>
+        {icon}
         <Text fz={14}>{label}</Text>
       </Flex>
     );
@@ -117,11 +103,7 @@ export default function NavBar({ opened }: { opened: boolean }) {
       <Flex direction="column" gap={10}>
         <Flex align="center" className={classes.contact} gap={10} pl={20}>
           <UnstyledButton>
-            <IconHeadphones
-              size="15px"
-              stroke={1.5}
-              className={classes.contact}
-            />
+            <IconHeadphones size="15px" stroke={1.5} />
           </UnstyledButton>
           <Text fz={14}>Contact Support</Text>
         </Flex>
@@ -155,9 +137,14 @@ export default function NavBar({ opened }: { opened: boolean }) {
         </Flex>
 
         <Flex align="center" className={classes.logout} gap={10} pl={20}>
-          <UnstyledButton>
-            <IconLogout size="15px" stroke={1.5} className={classes.logout} />
-          </UnstyledButton>
+          {/* <UnstyledButton> */}
+          <Logout
+            size="medium"
+            set="bulk"
+            primaryColor="red"
+            // className={classes.logout}
+          />
+          {/* </UnstyledButton> */}
           <Text fz={14}>Logout</Text>
         </Flex>
       </Flex>
@@ -165,18 +152,36 @@ export default function NavBar({ opened }: { opened: boolean }) {
   }
 
   const menu = [
-    { icon: IconCategory, label: "Dashboard", href: "/" },
-    { icon: IconShoppingBag, label: "Orders", href: "/orders" },
-    { icon: IconUsers, label: "Customers", href: "/customers" },
-    { icon: IconFolder, label: "Inventory", href: "/inventory" },
-    { icon: IconMessageCircle, label: "Conversations", href: "/conversations" },
-    { icon: IconSettings, label: "Settings", href: "/settings" },
-  ];
-
-  const otherMenu = [
-    { icon: IconHeadphones, label: "Contact Support", customClass: "contact" },
-    { icon: IconGift, label: "Free Gift Awaits You!", customClass: "gift" },
-    { icon: IconLogout, label: "Logout", customClass: "logout" },
+    {
+      icon: <Category set="bulk" size="small" />,
+      label: "Dashboard",
+      href: "/",
+    },
+    {
+      icon: <Bag set="light" size="small" />,
+      label: "Orders",
+      href: "/orders",
+    },
+    {
+      icon: <TwoUsers set="light" size="small" />,
+      label: "Customers",
+      href: "/customers",
+    },
+    {
+      icon: <Folder set="light" size="small" />,
+      label: "Inventory",
+      href: "/inventory",
+    },
+    {
+      icon: <Chat set="light" size="small" />,
+      label: "Conversations",
+      href: "/conversations",
+    },
+    {
+      icon: <Setting set="light" size="small" />,
+      label: "Settings",
+      href: "/settings",
+    },
   ];
 
   const links = menu.map((link, index) => (
@@ -185,15 +190,11 @@ export default function NavBar({ opened }: { opened: boolean }) {
       key={link.label}
       active={index === active}
       onClick={() => {
-        // setActive(index)
         router.push(link.href);
       }}
     />
   ));
 
-  const otherLinks = otherMenu.map((link, index) => (
-    <OtherNavbarLink {...(link as NavbarLinkProps)} key={link.label} />
-  ));
   return (
     <Navbar
       p="md"
@@ -202,7 +203,7 @@ export default function NavBar({ opened }: { opened: boolean }) {
       width={{ sm: 200, lg: 300 }}
       height="100vh"
     >
-      <Flex direction="column" justify="space-between" h="calc(100vh - 50px)">
+      <Flex direction="column" justify="space-between" h="calc(100vh - 120px)">
         <Stack>{links}</Stack>
         <Stack>{<OtherNavbarLink />}</Stack>
       </Flex>

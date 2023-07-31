@@ -938,6 +938,11 @@ find-root@^1.1.0:
   resolved "https://registry.yarnpkg.com/find-root/-/find-root-1.1.0.tgz#abcfc8ba76f708c42a97b3d685b7e9450bfb9ce4"
   integrity sha512-NKfW6bec6GfKc0SGx1e07QZY9PE99u0Bft/0rzSD5k3sO/vwkVUpDUKVm5Gpp5Ue3YfShPFTX2070tDs5kB9Ng==
 
+formatnumber-to-naira@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/formatnumber-to-naira/-/formatnumber-to-naira-2.0.1.tgz#3972d5bf1eeeca61544f33aa040c05a1f8a71979"
+  integrity sha512-rxOhojv8d/bYyBYD+utLdY6wLlFY+ejChoJoTUxwKpshfbt8W6VAbgRTgulVd1iJ6snwze/dAuOSNFAEDpaqXg==
+
 fraction.js@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/fraction.js/-/fraction.js-4.2.0.tgz#448e5109a313a3527f5a3ab2119ec4cf0e0e2950"
@@ -1440,6 +1445,11 @@ react-dropzone@14.2.3:
     attr-accept "^2.2.2"
     file-selector "^0.6.0"
     prop-types "^15.8.1"
+
+react-iconly@^2.2.10:
+  version "2.2.10"
+  resolved "https://registry.yarnpkg.com/react-iconly/-/react-iconly-2.2.10.tgz#da7719a2f99d52dff53e318aa6b9b2a02f274d12"
+  integrity sha512-AZYJRzXMj7yw+KIFUkom3cWhvfbrdlbOLbBDuFnPJrbrgynmNCcJhX8dIQ/JGKq5XDo1P9j8Gico0xZnV/bXWA==
 
 react-icons@^4.10.1:
   version "4.10.1"

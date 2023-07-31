@@ -147,7 +147,8 @@ export default function HeaderComponent({ title, items }: { title: string, items
         display: "flex",
       }}
     >
-      <Flex gap={10} align="center" w={300}>
+      <Flex gap={10} align="center" w={300}
+      pl={30}>
         <Image src={Logo.src} width={50} />
         <Text>Metrix</Text>
       </Flex>
