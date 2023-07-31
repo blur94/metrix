@@ -73,7 +73,7 @@ export default function Contacts() {
                   <Text fz={16} fw={500}>
                     {conversation.participant.name}
                   </Text>
-                  <Badge radius='xl' size="xs" color="yellow.3" tt='capitalize'>
+                  <Badge radius='xl' size="xs" color="orange.9" c='dark' tt='capitalize'>
                     {conversation.participant.status}
                   </Badge>
                 </Flex>
