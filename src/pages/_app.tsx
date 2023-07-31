@@ -25,7 +25,7 @@ export default function App(props: AppProps) {
         fontFamily: `${inter.style.fontFamily}`,
         colors: {},
         defaultRadius: 0,
-        primaryColor: "lime",
+        primaryColor: "indigo",
       }}
       emotionCache={cache}
     >

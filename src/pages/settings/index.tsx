@@ -5,13 +5,13 @@ const breadcrumbsItem = [
   { title: "Settings", href: "/settings" },
 ];
 
-function Conversations() {
+function Orders() {
   return <div>Settings</div>;
 }
 
 export default withLayout(
-  Conversations,
-  "Conversations",
-  "Conversations",
+  Orders,
+  "Orders",
+  "Orders",
   breadcrumbsItem
 );

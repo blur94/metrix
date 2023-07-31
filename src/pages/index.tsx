@@ -20,6 +20,7 @@ import ProductsCard from "@/views/dashboard/productsCard";
 import AbandonedCard from "@/views/dashboard/abadonedCard";
 import MarketingCard from "@/views/dashboard/marketingCard";
 import RecentOrdersCard from "@/views/dashboard/recentOrderCard";
+import ChartCard from "@/views/dashboard/chartCard";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -53,7 +54,15 @@ function Home() {
             </Grid>
           </Grid.Col>
         </Grid>
+
+        <Grid>
+          <Grid.Col span={12}>
+            <ChartCard />
+          </Grid.Col>
+        </Grid>
+
       </Grid.Col>
+      
       <Grid.Col span={4}>
         <Grid>
           <Grid.Col span={12}>
@@ -62,7 +71,6 @@ function Home() {
           <Grid.Col span={12}>
             <RecentOrdersCard />
           </Grid.Col>
-          
         </Grid>
       </Grid.Col>
     </Grid>
