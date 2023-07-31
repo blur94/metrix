@@ -1,10 +1,7 @@
 import {
   createStyles,
-  Header,
-  Group,
   Button,
   Divider,
-  Box,
   Burger,
   Drawer,
   ScrollArea,
@@ -12,11 +9,18 @@ import {
   Flex,
   Paper,
   Card,
+  Title,
+  Menu,
+  ThemeIcon,
+  Avatar,
 } from "@mantine/core";
 import { MantineLogo } from "@mantine/ds";
 import { useDisclosure } from "@mantine/hooks";
 import Link from "next/link";
 import { Poppins, Inter } from "next/font/google";
+import { IconSearch, IconChevronDown, IconBell } from "@tabler/icons-react";
+import { IconBellFilled } from "@tabler/icons-react";
+import ProfileImg from "@/assets/profile.png"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -115,7 +119,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export default function HeaderComponent() {
+export default function HeaderComponent({ title }: { title: string }) {
   const [opened, { toggle, close }] = useDisclosure(false);
   const { classes, theme } = useStyles();
 
@@ -127,29 +131,21 @@ export default function HeaderComponent() {
       // w="100%"
       className={inter.className}
     >
-      {/* <Header height={60} px="md" pos="fixed" top={0}> */}
       <Paper
         h={60}
-        // justify="space-between"
-        // align="center"
         px="md"
         pos="fixed"
         top={0}
         left={300}
-        // right={0}
         w="calc(100vw - 300px)"
-        // w="100%"
-        // display="flex"
       >
         <Flex
           justify="space-between"
           align="center"
-          // pos="fixed"
-          // top={0}
           sx={{ height: "100%", width: "100%" }}
         >
           <Link href="/" className={classes.logoSection}>
-            <MantineLogo size={30} />
+            <Title order={4}>{title}</Title>
           </Link>
 
           <Burger
@@ -160,36 +156,38 @@ export default function HeaderComponent() {
           />
 
           <Flex
-            sx={{ height: "100%" }}
-            // spacing={0}
-            className={classes.hiddenMobile}
-          >
-            <Link href="/" className={classes.link}>
-              Home
-            </Link>
-            <Link href="/tickets" className={classes.link}>
-              Tickets
-            </Link>
-            <Link href="/delivery" className={classes.link}>
-              Delivery
-            </Link>
-            <Link href="/about" className={classes.link}>
-              About
-            </Link>
-          </Flex>
-
-          <Flex
             align="center"
             gap={10}
             className={classes.hiddenMobile}
             sx={{ height: "100%" }}
           >
-            <Button variant="default">Log in</Button>
-            <Button>Sign up</Button>
+            <Menu>
+              <Menu.Target>
+                <Button
+                  variant="light"
+                  rightIcon={<IconChevronDown />}
+                  c="dark.5"
+                  color="yellow"
+                  size="xs"
+                >
+                  Nancy's Shop
+                </Button>
+              </Menu.Target>
+
+              <Menu.Dropdown>
+                <Menu.Item icon={<IconSearch size={rem(14)} />} disabled>
+                  Search
+                </Menu.Item>
+              </Menu.Dropdown>
+            </Menu>
+
+            <ThemeIcon variant="default" sx={{ border: "none" }}>
+              <IconBellFilled size={15} color="#5570F1" />
+            </ThemeIcon>
+            <Avatar src={ProfileImg.src} alt="Profile Image" size={30} />
           </Flex>
         </Flex>
       </Paper>
-      {/* </Header> */}
 
       <Drawer
         opened={opened}

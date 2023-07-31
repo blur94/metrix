@@ -54,4 +54,4 @@ function Home() {
   );
 }
 
-export default withLayout(Home, "Home")
+export default withLayout(Home, "Home", "Dashboard")

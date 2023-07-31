@@ -10,7 +10,8 @@ import NavBar from "@/components/SideMenu";
 
 export default function withLayout(
   Component: ComponentType,
-  pageName: string = ""
+  pageName: string = "",
+  title: string = "",
 ) {
   const LayoutComponent = () => {
     const theme = useMantineTheme();
@@ -38,7 +39,7 @@ export default function withLayout(
           //   </Footer>
           // }
         >
-          <HeaderComponent />
+          <HeaderComponent title={title} />
           <Component />
         </AppShell>
         {/* <NavHeader /> */}
