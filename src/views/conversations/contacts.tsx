@@ -2,7 +2,6 @@ import { conversationList } from "@/constants/conversationData";
 import {
   Group,
   ThemeIcon,
-  Select,
   Flex,
   Text,
   Paper,
@@ -16,12 +15,9 @@ import {
   Indicator,
 } from "@mantine/core";
 import {
-  IconChevronDown,
   IconSearch,
-  IconShoppingCart,
 } from "@tabler/icons-react";
 import dayjs from "dayjs";
-import { formatPrice } from "formatnumber-to-naira";
 
 export default function Contacts() {
   const theme = useMantineTheme();
@@ -32,7 +28,7 @@ export default function Contacts() {
         <Title order={4}>Contact</Title>
         <ThemeIcon variant="transparent" color="gray" size="xl" radius="md">
           <Text c="dimmed" fz={20} fw={500}>
-            34
+            {conversationList && conversationList.length}
           </Text>
         </ThemeIcon>
       </Group>
