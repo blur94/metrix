@@ -1,28 +1,25 @@
-import Image from "next/image";
 import { Inter } from "next/font/google";
 import withLayout from "@/layouts/appLayout";
+import { IconChevronDown } from "@tabler/icons-react";
 import {
-  IconDotsVertical,
-  IconGraph,
-  IconGraphOff,
-  IconHome,
-  IconUsersGroup,
-} from "@tabler/icons-react";
-import {
-  Box,
-  Breadcrumbs,
   Card,
-  Divider,
   Flex,
   Grid,
   Group,
   Paper,
+  Select,
   Text,
   ThemeIcon,
 } from "@mantine/core";
-import { Fragment } from "react";
 import { formatPrice } from "formatnumber-to-naira";
-import {Graph} from 'react-iconly'
+import { Graph, TwoUsers, Bag } from "react-iconly";
+import SalesCard from "@/views/dashboard/salesCard";
+import CustomerCard from "@/views/dashboard/customerCard";
+import AllOrdersCard from "@/views/dashboard/allOrdersCard";
+import ProductsCard from "@/views/dashboard/productsCard";
+import AbandonedCard from "@/views/dashboard/abadonedCard";
+import MarketingCard from "@/views/dashboard/marketingCard";
+import RecentOrdersCard from "@/views/dashboard/recentOrderCard";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,50 +31,39 @@ function Home() {
       <Grid.Col span={8}>
         <Grid>
           <Grid.Col span={6}>
-            <Paper withBorder p="md" radius="md">
-              <Group position="apart">
-                <ThemeIcon variant="light" color="gray" size="xl" radius="md">
-                  {/* <IconGraphOff size="25" stroke={2} /> */}
-                  <Graph set="light" primaryColor="blueviolet" />
-                </ThemeIcon>
-                <IconDotsVertical size="1rem" stroke={2} />
-              </Group>
-
-              <Group
-                align="center"
-                position="apart"
-                spacing="xs"
-                mt={7}
-                pr={30}
-              >
-                <Flex direction="column">
-                  <Text c="dimmed" fz={14}>
-                    Sales
-                  </Text>
-                  <Text fw={500}>{formatPrice(4000000)}</Text>
-                </Flex>
-
-                <Flex direction="column">
-                  <Text c="dimmed" fz={14}>
-                    Volume
-                  </Text>
-                  <Flex align="center" gap={10}>
-                    <Text fw={500}>450</Text>
-                    <Text color="teal" fz={12}>
-                      +20.00%
-                    </Text>
-                  </Flex>
-                </Flex>
-              </Group>
-            </Paper>
+            <SalesCard />
           </Grid.Col>
           <Grid.Col span={6}>
-            <Card>A lot</Card>
+            <CustomerCard />
+          </Grid.Col>
+        </Grid>
+
+        <Grid mt={10}>
+          <Grid.Col span={6}>
+            <MarketingCard />
+          </Grid.Col>
+          <Grid.Col span={6}>
+            <Grid>
+              <Grid.Col span={12}>
+                <ProductsCard />
+              </Grid.Col>
+              <Grid.Col span={12}>
+                <AbandonedCard />
+              </Grid.Col>
+            </Grid>
           </Grid.Col>
         </Grid>
       </Grid.Col>
       <Grid.Col span={4}>
-        <Card>A lot</Card>
+        <Grid>
+          <Grid.Col span={12}>
+            <AllOrdersCard />
+          </Grid.Col>
+          <Grid.Col span={12}>
+            <RecentOrdersCard />
+          </Grid.Col>
+          
+        </Grid>
       </Grid.Col>
     </Grid>
   );
