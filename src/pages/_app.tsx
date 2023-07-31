@@ -31,9 +31,9 @@ export default function App(props: AppProps) {
     >
       <RouterTransition />
       <Notifications position="top-center" />
-      <Box>
+      {/* <Box> */}
         <Component {...pageProps} />
-      </Box>
+      {/* </Box> */}
     </MantineProvider>
   );
 }

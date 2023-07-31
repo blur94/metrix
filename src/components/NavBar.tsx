@@ -13,14 +13,26 @@ import {
   Menu,
   ThemeIcon,
   Avatar,
+  Breadcrumbs,
+  Text,
+  Box,
+  Header,
+  Image,
 } from "@mantine/core";
 import { MantineLogo } from "@mantine/ds";
 import { useDisclosure } from "@mantine/hooks";
 import Link from "next/link";
 import { Poppins, Inter } from "next/font/google";
-import { IconSearch, IconChevronDown, IconBell } from "@tabler/icons-react";
+import {
+  IconSearch,
+  IconChevronDown,
+  IconBell,
+  IconHome,
+  IconHome2,
+} from "@tabler/icons-react";
 import { IconBellFilled } from "@tabler/icons-react";
-import ProfileImg from "@/assets/profile.png"
+import ProfileImg from "@/assets/profile.png";
+import Logo from "@/assets/logo.png";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -119,32 +131,36 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export default function HeaderComponent({ title }: { title: string }) {
+interface Items {
+  title: string;
+  href: string;
+}
+
+export default function HeaderComponent({ title, items }: { title: string, items: Items[] }) {
   const [opened, { toggle, close }] = useDisclosure(false);
   const { classes, theme } = useStyles();
 
   return (
-    <Card
-      withBorder
-      pos="relative"
-      w="calc(100vw - 300px)"
-      // w="100%"
-      className={inter.className}
+    <Header
+      height={80}
+      sx={{
+        display: "flex",
+      }}
     >
-      <Paper
-        h={60}
-        px="md"
-        pos="fixed"
-        top={0}
-        left={300}
-        w="calc(100vw - 300px)"
-      >
+      <Flex gap={10} align="center" w={300}>
+        <Image src={Logo.src} width={50} />
+        <Text>Metrix</Text>
+      </Flex>
+
+      <Flex direction="column" w="calc(100vw - 300px)" pr="md">
         <Flex
           justify="space-between"
           align="center"
-          sx={{ height: "100%", width: "100%" }}
+          w="calc(100vw - 300px)"
+          h="100%"
+          sx={{ width: "100%" }}
         >
-          <Link href="/" className={classes.logoSection}>
+          <Link href="/">
             <Title order={4}>{title}</Title>
           </Link>
 
@@ -152,7 +168,6 @@ export default function HeaderComponent({ title }: { title: string }) {
             opened={opened}
             onClick={toggle}
             className={classes.hiddenDesktop}
-            // mr="xl"
           />
 
           <Flex
@@ -187,52 +202,22 @@ export default function HeaderComponent({ title }: { title: string }) {
             <Avatar src={ProfileImg.src} alt="Profile Image" size={30} />
           </Flex>
         </Flex>
-      </Paper>
-
-      <Drawer
-        opened={opened}
-        onClose={close}
-        size="100%"
-        padding="md"
-        title="Navigation"
-        className={classes.hiddenDesktop}
-        zIndex={1000000}
-        transitionProps={{
-          transition: "slide-left",
-          duration: 300, // You can adjust the duration as needed (in milliseconds)
-          timingFunction: "ease-in-out", // You can try different timing functions like 'linear', 'ease-in', 'ease-out', etc.
-        }}
-      >
-        <ScrollArea h={`calc(100vh - ${rem(60)})`} mx="-md">
-          <Divider
-            my="sm"
-            color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
-          />
-
-          <Link href="/" className={classes.link}>
-            Home
-          </Link>
-          <Link href="/tickets" className={classes.link}>
-            Tickets
-          </Link>
-          <Link href="/delivery" className={classes.link}>
-            Delivery
-          </Link>
-          <Link href="/about" className={classes.link}>
-            About
-          </Link>
-
-          <Divider
-            my="sm"
-            color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
-          />
-
-          <Flex justify="center" pb="xl" px="md">
-            <Button variant="default">Log in</Button>
-            <Button>Sign up</Button>
-          </Flex>
-        </ScrollArea>
-      </Drawer>
-    </Card>
+        <Box w="calc(100vw - 300)" pb="xs">
+          <Divider mb={5} />
+          <Breadcrumbs mb={0}>
+            {items.map((item, index) => (
+              <span key={index}>
+                <Flex align="center" gap={10} fz={10}>
+                  <Link href={item.href}>
+                    {index === 0 && <IconHome size="1rem" color="#5570F1" />}
+                    {item.title}
+                  </Link>
+                </Flex>
+              </span>
+            ))}
+          </Breadcrumbs>
+        </Box>
+      </Flex>
+    </Header>
   );
 }

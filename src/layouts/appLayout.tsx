@@ -8,10 +8,16 @@ import { AppShell, Footer, Navbar, Text, useMantineTheme } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import NavBar from "@/components/SideMenu";
 
+interface Items {
+  title: string;
+  href: string;
+}
+
 export default function withLayout(
   Component: ComponentType,
   pageName: string = "",
   title: string = "",
+  breadcrumbsItems: Items[],
 ) {
   const LayoutComponent = () => {
     const theme = useMantineTheme();
@@ -30,20 +36,14 @@ export default function withLayout(
             },
           }}
           navbarOffsetBreakpoint="sm"
-          asideOffsetBreakpoint="sm"
-          // header={<HeaderComponent />}
+          // asideOffsetBreakpoint="sm"
+          p={0}
+          m={0}
           navbar={<NavBar opened={opened} />}
-          // footer={
-          //   <Footer height={{ base: 30, md: 50 }}>
-          //     <Text>Footer</Text>
-          //   </Footer>
-          // }
         >
-          <HeaderComponent title={title} />
+          <HeaderComponent title={title} items={breadcrumbsItems} />
           <Component />
         </AppShell>
-        {/* <NavHeader /> */}
-        {/* <Footer /> */}
       </Fragment>
     );
   };

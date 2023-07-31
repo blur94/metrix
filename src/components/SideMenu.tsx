@@ -23,6 +23,7 @@ import {
 } from "@tabler/icons-react";
 import Logo from "@/assets/logo.png";
 import { IconShoppingBag } from "@tabler/icons-react";
+import { useRouter } from "next/router";
 
 type CustomClassType = "link" | "active" | "gift" | "contact" | "logout";
 
@@ -30,6 +31,7 @@ interface NavbarLinkProps {
   icon: React.FC<any>;
   label: string;
   active?: boolean;
+  href: string;
   onClick?(): void;
   customClass?: CustomClassType | undefined;
 }
@@ -70,19 +72,36 @@ const useStyles = createStyles((theme) => ({
 
 export default function NavBar({ opened }: { opened: boolean }) {
   const [active, setActive] = useState(0);
+  const router = useRouter();
 
-  function NavbarLink({ icon: Icon, label, active, onClick }: NavbarLinkProps) {
+  function NavbarLink({
+    icon: Icon,
+    label,
+    active,
+    onClick,
+    href,
+  }: NavbarLinkProps) {
     const { classes, cx } = useStyles();
     return (
       <Flex
         align="center"
-        className={cx(classes.link, { [classes.active]: active })}
+        // className={cx(classes.link, { [classes.active]: active })}
+        className={
+          router.pathname === href
+            ? `${classes.link} ${classes.active}`
+            : `${classes.link}`
+        }
         onClick={onClick}
         gap={10}
         pl={20}
       >
         <UnstyledButton
-          className={cx(classes.link, { [classes.active]: active })}
+          // className={cx(classes.link, { [classes.active]: active })}
+          className={
+            router.pathname === href
+              ? `${classes.link} ${classes.active}`
+              : `${classes.link}`
+          }
         >
           <Icon size="15px" stroke={1.5} />
         </UnstyledButton>
@@ -108,10 +127,10 @@ export default function NavBar({ opened }: { opened: boolean }) {
         </Flex>
 
         <Flex
-        direction="column"
-        justify='center'
-        pl={20}
-        h={58}
+          direction="column"
+          justify="center"
+          pl={20}
+          h={58}
           sx={{
             backgroundColor: "rgba(255, 204, 145, 0.20)",
             borderRadius: "16px",
@@ -146,12 +165,12 @@ export default function NavBar({ opened }: { opened: boolean }) {
   }
 
   const menu = [
-    { icon: IconCategory, label: "Dashboard" },
-    { icon: IconShoppingBag, label: "Orders" },
-    { icon: IconUsers, label: "Customers" },
-    { icon: IconFolder, label: "Inventory" },
-    { icon: IconMessageCircle, label: "Conversations" },
-    { icon: IconSettings, label: "Settings" },
+    { icon: IconCategory, label: "Dashboard", href: "/" },
+    { icon: IconShoppingBag, label: "Orders", href: "/orders" },
+    { icon: IconUsers, label: "Customers", href: "/customers" },
+    { icon: IconFolder, label: "Inventory", href: "/inventory" },
+    { icon: IconMessageCircle, label: "Conversations", href: "/conversations" },
+    { icon: IconSettings, label: "Settings", href: "/settings" },
   ];
 
   const otherMenu = [
@@ -165,7 +184,10 @@ export default function NavBar({ opened }: { opened: boolean }) {
       {...link}
       key={link.label}
       active={index === active}
-      onClick={() => setActive(index)}
+      onClick={() => {
+        // setActive(index)
+        router.push(link.href);
+      }}
     />
   ));
 
@@ -180,11 +202,6 @@ export default function NavBar({ opened }: { opened: boolean }) {
       width={{ sm: 200, lg: 300 }}
       height="100vh"
     >
-      <Flex gap={10} align="center">
-        <Image src={Logo.src} width={50} />
-        <Text>Metrix</Text>
-      </Flex>
-      <Divider my={20} />
       <Flex direction="column" justify="space-between" h="calc(100vh - 50px)">
         <Stack>{links}</Stack>
         <Stack>{<OtherNavbarLink />}</Stack>
