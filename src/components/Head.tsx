@@ -3,7 +3,7 @@ import Head from "next/head";
 export default function HeadMeta({ pageName }: { pageName?: string }) {
   return (
     <Head>
-      <title>{pageName && `${pageName} | `}tiketai</title>
+      <title>{pageName && `${pageName} | `}Metrix</title>
       <meta name="description" content="Tiketai - A Powerful Ticketing System for Seamless Event Management" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link
