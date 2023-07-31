@@ -63,7 +63,6 @@ export const options = {
   },
 };
 
-
 const DAYS = [
   "Sept 10",
   "Sept 11",
@@ -96,7 +95,7 @@ export const data = {
       fill: true,
       label: "Income Amount",
       data: days({ count: 7 }).map(
-        () => faker.datatype.number({ min: 20000, max: 100000 })
+        () => faker.number.int({ min: 20000, max: 100000 })
         // 0
       ),
       borderColor: "#5570F1",

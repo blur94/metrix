@@ -6,7 +6,7 @@ export default function AbandonedCard() {
     <Paper withBorder p="md" radius="md" h={133}>
       <Group position="apart">
         <ThemeIcon variant="light" color="gray" size="xl" radius="md">
-          <IconShoppingCart size={15} />
+          <IconShoppingCart size={25} color="#000" />
         </ThemeIcon>
         <Select
           data={["This Week", "This Month", "This Year"]}
