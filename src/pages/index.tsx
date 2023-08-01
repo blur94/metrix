@@ -17,21 +17,21 @@ const breadcrumbsItem = [{ title: "", href: "/" }];
 function Home() {
   return (
     <Grid>
-      <Grid.Col span={8}>
+      <Grid.Col md={8} sm={12}>
         <Grid>
-          <Grid.Col span={6}>
+          <Grid.Col md={6} sm={12}>
             <SalesCard />
           </Grid.Col>
-          <Grid.Col span={6}>
+          <Grid.Col md={6} sm={12}>
             <CustomerCard />
           </Grid.Col>
         </Grid>
 
         <Grid mt={10}>
-          <Grid.Col span={6}>
+          <Grid.Col md={6} sm={12}>
             <MarketingCard />
           </Grid.Col>
-          <Grid.Col span={6}>
+          <Grid.Col md={6} sm={12}>
             <Grid>
               <Grid.Col span={12}>
                 <ProductsCard />
@@ -50,7 +50,7 @@ function Home() {
         </Grid>
       </Grid.Col>
 
-      <Grid.Col span={4}>
+      <Grid.Col md={4} sm={12}>
         <Grid>
           <Grid.Col span={12}>
             <AllOrdersCard />
