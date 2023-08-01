@@ -3,15 +3,11 @@ import {
   TextInputProps,
   ActionIcon,
   useMantineTheme,
-  ThemeIcon,
   Flex,
   Button,
   Menu,
 } from "@mantine/core";
 import {
-  IconSearch,
-  IconArrowRight,
-  IconArrowLeft,
   IconPlus,
 } from "@tabler/icons-react";
 import { Camera, Image2, Send, Document } from "react-iconly";
