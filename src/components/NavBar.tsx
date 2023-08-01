@@ -241,7 +241,16 @@ export default function HeaderComponent({
           </Breadcrumbs>
         </Box>
       </Flex>
-      <Drawer opened={opened} onClose={toggle} size='100%'>
+      <Drawer
+        opened={opened}
+        onClose={toggle}
+        size="100%"
+        transitionProps={{
+          transition: "slide-left",
+          duration: 300, 
+          timingFunction: "ease-in-out", 
+        }}
+      >
         <NavBar opened={opened} />
       </Drawer>
     </Header>
