@@ -10,7 +10,7 @@ export const conversationList = [
       name: "Jane Doe",
       image: Jane,
       online: true,
-      status: '2',
+      status: "2",
     },
     messages: [
       {
@@ -55,7 +55,7 @@ export const conversationList = [
   {
     id: "conversation3",
     participant: {
-      id: "user3",
+      id: "user4",
       name: "Kunle Adekunle",
       image: Kunle,
       online: true,

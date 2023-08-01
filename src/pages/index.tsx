@@ -1,18 +1,6 @@
 import { Inter } from "next/font/google";
 import withLayout from "@/layouts/appLayout";
-import { IconChevronDown } from "@tabler/icons-react";
-import {
-  Card,
-  Flex,
-  Grid,
-  Group,
-  Paper,
-  Select,
-  Text,
-  ThemeIcon,
-} from "@mantine/core";
-import { formatPrice } from "formatnumber-to-naira";
-import { Graph, TwoUsers, Bag } from "react-iconly";
+import { Grid } from "@mantine/core";
 import SalesCard from "@/views/dashboard/salesCard";
 import CustomerCard from "@/views/dashboard/customerCard";
 import AllOrdersCard from "@/views/dashboard/allOrdersCard";
@@ -60,9 +48,8 @@ function Home() {
             <ChartCard />
           </Grid.Col>
         </Grid>
-
       </Grid.Col>
-      
+
       <Grid.Col span={4}>
         <Grid>
           <Grid.Col span={12}>

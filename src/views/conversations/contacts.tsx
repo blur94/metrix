@@ -14,13 +14,13 @@ import {
   Divider,
   Indicator,
 } from "@mantine/core";
-import {
-  IconSearch,
-} from "@tabler/icons-react";
+import { IconSearch } from "@tabler/icons-react";
 import dayjs from "dayjs";
+import Message from "@/store/message.store";
 
 export default function Contacts() {
   const theme = useMantineTheme();
+  const { setUser, setConversations } = Message();
 
   return (
     <Paper withBorder p="md" radius="md" h="calc(100vh - 170px)">
@@ -59,7 +59,13 @@ export default function Contacts() {
 
       {conversationList.map((conversation) => {
         return (
-          <Box my={20}>
+          <Box
+            my={20}
+            onClick={() => {
+              setUser(conversation.participant);
+              setConversations(conversation.messages)
+            }}
+          >
             <Flex gap={20} align="center">
               <Indicator
                 color={conversation.participant.online ? "blue" : "gray"}
@@ -73,7 +79,13 @@ export default function Contacts() {
                   <Text fz={16} fw={500}>
                     {conversation.participant.name}
                   </Text>
-                  <Badge radius='xl' size="xs" color="orange.9" c='dark' tt='capitalize'>
+                  <Badge
+                    radius="xl"
+                    size="xs"
+                    color="orange.9"
+                    c="dark"
+                    tt="capitalize"
+                  >
                     {conversation.participant.status}
                   </Badge>
                 </Flex>

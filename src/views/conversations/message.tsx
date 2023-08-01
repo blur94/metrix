@@ -1,7 +1,11 @@
 import { Group, ThemeIcon, Select, Paper } from "@mantine/core";
 import { IconChevronDown, IconShoppingCart } from "@tabler/icons-react";
+import MessageStore from "@/store/message.store"
 
 export default function Message() {
+  const { user, conversations } = MessageStore();
+  console.log(user, conversations);
+
   return (
     <Paper withBorder p="md" radius="md" h="calc(100vh - 170px)">
       <Group position="apart">
