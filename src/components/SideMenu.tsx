@@ -105,7 +105,7 @@ export default function NavBar({ opened }: { opened: boolean }) {
           <UnstyledButton>
             <IconHeadphones size="15px" stroke={1.5} />
           </UnstyledButton>
-          <Text fz={14}>Contact Support</Text>
+          <Text fz={{ base: 10, md: 14 }}>Contact Support</Text>
         </Flex>
 
         <Flex
@@ -122,10 +122,10 @@ export default function NavBar({ opened }: { opened: boolean }) {
             <UnstyledButton>
               <IconGift size="15px" stroke={1.5} className={classes.gift} />
             </UnstyledButton>
-            <Text fz={14}>Free Gift Awaits You!</Text>
+            <Text fz={{ base: 10, md: 12, lg: 14, xl: 14 }}>Free Gift Awaits You!</Text>
           </Flex>
           <Flex align="center" className={classes.gift} gap={10}>
-            <Text fz={12}>Upgrade your account</Text>
+            <Text fz={{ base: 8, md: 10 }}>Upgrade your account</Text>
             <UnstyledButton>
               <IconChevronRight
                 size={13}
