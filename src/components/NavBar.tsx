@@ -4,11 +4,8 @@ import {
   Divider,
   Burger,
   Drawer,
-  ScrollArea,
   rem,
   Flex,
-  Paper,
-  Card,
   Title,
   Menu,
   ThemeIcon,
@@ -33,6 +30,7 @@ import {
 import { IconBellFilled } from "@tabler/icons-react";
 import ProfileImg from "@/assets/profile.png";
 import Logo from "@/assets/logo.png";
+import NavBar from "./SideMenu";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -136,7 +134,13 @@ interface Items {
   href: string;
 }
 
-export default function HeaderComponent({ title, items }: { title: string, items: Items[] }) {
+export default function HeaderComponent({
+  title,
+  items,
+}: {
+  title: string;
+  items: Items[];
+}) {
   const [opened, { toggle, close }] = useDisclosure(false);
   const { classes, theme } = useStyles();
 
@@ -147,29 +151,47 @@ export default function HeaderComponent({ title, items }: { title: string, items
         display: "flex",
       }}
     >
-      <Flex gap={10} align="center" w={300}
-      pl={30}>
+      <Flex gap={10} align="center" w={300} pl={30}>
         <Image src={Logo.src} width={50} />
         <Text>Metrix</Text>
       </Flex>
 
-      <Flex direction="column" w="calc(100vw - 300px)" pr="md">
+      <Flex
+        direction="column"
+        w="calc(100vw - 300px)"
+        pr="md"
+        sx={{
+          [theme.fn.smallerThan("sm")]: {
+            width: "100vw",
+            paddingInline: "10px",
+          },
+        }}
+      >
         <Flex
           justify="space-between"
           align="center"
           w="calc(100vw - 300px)"
           h="100%"
-          sx={{ width: "100%" }}
+          sx={{
+            width: "100%",
+            [theme.fn.smallerThan("sm")]: {
+              flexDirection: "column",
+              // gap: 1,
+              justifyContent: "flex-start",
+              paddingTop: "10px",
+              // paddingRight: "10px",
+            },
+          }}
         >
-          <Link href="/">
-            <Title order={4}>{title}</Title>
-          </Link>
-
           <Burger
             opened={opened}
             onClick={toggle}
             className={classes.hiddenDesktop}
           />
+
+          <Title order={4} fz={{ base: 12, md: 20 }}>
+            {title}
+          </Title>
 
           <Flex
             align="center"
@@ -203,7 +225,7 @@ export default function HeaderComponent({ title, items }: { title: string, items
             <Avatar src={ProfileImg.src} alt="Profile Image" size={30} />
           </Flex>
         </Flex>
-        <Box w="calc(100vw - 300)" pb="xs">
+        <Box w="calc(100vw - 300)" pb="xs" className={classes.hiddenMobile}>
           <Divider mb={5} />
           <Breadcrumbs mb={0}>
             {items.map((item, index) => (
@@ -219,6 +241,9 @@ export default function HeaderComponent({ title, items }: { title: string, items
           </Breadcrumbs>
         </Box>
       </Flex>
+      <Drawer opened={opened} onClose={toggle} size='100%'>
+        <NavBar opened={opened} />
+      </Drawer>
     </Header>
   );
 }
