@@ -18,7 +18,7 @@ import { IconSearch } from "@tabler/icons-react";
 import dayjs from "dayjs";
 import Message from "@/store/message.store";
 
-export default function Contacts() {
+export default function Contacts({ toggle }: { toggle: () => void }) {
   const theme = useMantineTheme();
   const { setUser, setConversations } = Message();
 
@@ -63,7 +63,8 @@ export default function Contacts() {
             my={20}
             onClick={() => {
               setUser(conversation.participant);
-              setConversations(conversation.messages)
+              setConversations(conversation.messages);
+              toggle();
             }}
           >
             <Flex gap={20} align="center">

@@ -14,7 +14,7 @@ export default function MessageHead() {
         </ThemeIcon>
         <Flex direction="column" w="100%" gap={5}>
           <Flex justify="space-between" align="center">
-            <Text fz={16} fw={500}>
+            <Text fz={{base: 10, md: 16}} fw={500}>
               {user?.name}
             </Text>
 
