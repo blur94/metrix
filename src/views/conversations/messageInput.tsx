@@ -6,9 +6,15 @@ import {
   ThemeIcon,
   Flex,
   Button,
+  Menu,
 } from "@mantine/core";
-import { IconSearch, IconArrowRight, IconArrowLeft, IconPlus } from "@tabler/icons-react";
-import { Send } from "react-iconly";
+import {
+  IconSearch,
+  IconArrowRight,
+  IconArrowLeft,
+  IconPlus,
+} from "@tabler/icons-react";
+import { Camera, Image2, Send, Document } from "react-iconly";
 import { BsEmojiSmile } from "react-icons/bs";
 
 export function MessageInput(props: TextInputProps) {
@@ -17,9 +23,20 @@ export function MessageInput(props: TextInputProps) {
   return (
     <TextInput
       icon={
-        <ActionIcon color="orange.1" variant="filled" radius="md">
-          <IconPlus size="1.1rem" stroke={1.5} color="black" />
-        </ActionIcon>
+        <Menu>
+          <Menu.Target>
+            <ActionIcon color="orange.1" variant="filled" radius="md">
+              <IconPlus size="1.1rem" stroke={1.5} color="black" />
+            </ActionIcon>
+          </Menu.Target>
+          <Menu.Dropdown>
+            <Menu.Item icon={<Image2 size="medium" />}>
+              Photos & Videos
+            </Menu.Item>
+            <Menu.Item icon={<Camera size="medium" />}>Camera</Menu.Item>
+            <Menu.Item icon={<Document size="medium" />}>Document</Menu.Item>
+          </Menu.Dropdown>
+        </Menu>
       }
       radius="sm"
       size="md"
@@ -34,12 +51,12 @@ export function MessageInput(props: TextInputProps) {
             <BsEmojiSmile />
           </ActionIcon>
           <Button
-            size='xs'
+            size="xs"
             radius="sm"
-            color='orange.1'
+            color="orange.1"
             variant="light"
-            c='black'
-            rightIcon={<Send set='bulk' primaryColor='black' size='small' />}
+            c="black"
+            rightIcon={<Send set="bulk" primaryColor="black" size="small" />}
           >
             Send
           </Button>
