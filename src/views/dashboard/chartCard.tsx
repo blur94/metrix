@@ -27,7 +27,6 @@ export default function ChartCard() {
         />
 
         <Select
-          //   label={<Text mb={5}>Summary</Text>}
           data={["Last 7 Days", "Last 1 Month", "Last 1 Year"]}
           defaultValue="Last 7 Days"
           variant="unstyled"

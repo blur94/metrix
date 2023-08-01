@@ -40,7 +40,7 @@ export const conversationList = [
     messages: [
       {
         id: "message3",
-        sender: "user1",
+        sender: "currentUser",
         content: "Hey, how's it going?",
         timestamp: "2023-07-30T13:15:00Z",
       },
@@ -70,7 +70,7 @@ export const conversationList = [
       },
       {
         id: "message4",
-        sender: "user3",
+        sender: "currentUser",
         content: "I'm doing great, thanks!",
         timestamp: "2023-07-30T13:16:00Z",
       },
