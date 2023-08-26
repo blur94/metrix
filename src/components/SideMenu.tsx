@@ -44,6 +44,7 @@ const useStyles = createStyles((theme) => ({
     borderRadius: theme.radius.md,
     display: "flex",
     alignItems: "center",
+    cursor: "pointer",
     color:
       theme.colorScheme === "dark"
         ? theme.colors.dark[0]
@@ -100,7 +101,7 @@ export default function NavBar({ opened }: { opened: boolean }) {
     const { classes, cx } = useStyles();
 
     return (
-      <Flex direction="column" gap={10}>
+      <Flex direction="column" gap={10} sx={{ cursor: "pointer" }}>
         <Flex align="center" className={classes.contact} gap={10} pl={20}>
           <UnstyledButton>
             <IconHeadphones size="15px" stroke={1.5} />
@@ -118,13 +119,25 @@ export default function NavBar({ opened }: { opened: boolean }) {
             borderRadius: "16px",
           }}
         >
-          <Flex align="center" className={classes.gift} gap={10}>
+          <Flex
+            align="center"
+            className={classes.gift}
+            gap={10}
+            sx={{ cursor: "pointer" }}
+          >
             <UnstyledButton>
               <IconGift size="15px" stroke={1.5} className={classes.gift} />
             </UnstyledButton>
-            <Text fz={{ base: 10, md: 12, lg: 14, xl: 14 }}>Free Gift Awaits You!</Text>
+            <Text fz={{ base: 10, md: 12, lg: 14, xl: 14 }}>
+              Free Gift Awaits You!
+            </Text>
           </Flex>
-          <Flex align="center" className={classes.gift} gap={10}>
+          <Flex
+            align="center"
+            className={classes.gift}
+            gap={10}
+            sx={{ cursor: "pointer" }}
+          >
             <Text fz={{ base: 8, md: 10 }}>Upgrade your account</Text>
             <UnstyledButton>
               <IconChevronRight
@@ -136,15 +149,14 @@ export default function NavBar({ opened }: { opened: boolean }) {
           </Flex>
         </Flex>
 
-        <Flex align="center" className={classes.logout} gap={10} pl={20}>
-          {/* <UnstyledButton> */}
-          <Logout
-            size="medium"
-            set="bulk"
-            primaryColor="red"
-            // className={classes.logout}
-          />
-          {/* </UnstyledButton> */}
+        <Flex
+          align="center"
+          className={classes.logout}
+          gap={10}
+          pl={20}
+          sx={{ cursor: "pointer" }}
+        >
+          <Logout size="medium" set="bulk" primaryColor="red" />
           <Text fz={14}>Logout</Text>
         </Flex>
       </Flex>
