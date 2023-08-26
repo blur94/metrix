@@ -50,19 +50,21 @@ function Conversations() {
         </MediaQuery>
       </Grid>
 
-      <Drawer
-        opened={opened}
-        onClose={close}
-        overlayProps={{ opacity: 0.5, blur: 4 }}
-        transitionProps={{
-          transition: "slide-left",
-          duration: 300,
-          timingFunction: "ease-in-out",
-        }}
-        size="100%"
-      >
-        <Message />
-      </Drawer>
+      <MediaQuery largerThan="sm" styles={{ display: "none" }}>
+        <Drawer
+          opened={opened}
+          onClose={close}
+          overlayProps={{ opacity: 0.5, blur: 4 }}
+          transitionProps={{
+            transition: "slide-left",
+            duration: 300,
+            timingFunction: "ease-in-out",
+          }}
+          size="100%"
+        >
+          <Message />
+        </Drawer>
+      </MediaQuery>
     </Box>
   );
 }

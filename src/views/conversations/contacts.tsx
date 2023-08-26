@@ -75,7 +75,12 @@ export default function Contacts({ toggle }: { toggle: () => void }) {
               >
                 <Avatar src={conversation.participant.image.src} size={50} />
               </Indicator>
-              <Flex direction="column" w="80%" gap={5}>
+              <Flex
+                direction="column"
+                w="80%"
+                gap={5}
+                sx={{ cursor: "pointer" }}
+              >
                 <Flex justify="space-between" align="center">
                   <Text fz={16} fw={500}>
                     {conversation.participant.name}
