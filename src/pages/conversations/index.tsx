@@ -54,6 +54,11 @@ function Conversations() {
         opened={opened}
         onClose={close}
         overlayProps={{ opacity: 0.5, blur: 4 }}
+        transitionProps={{
+          transition: "slide-left",
+          duration: 300,
+          timingFunction: "ease-in-out",
+        }}
         size="100%"
       >
         <Message />
