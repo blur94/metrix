@@ -7,7 +7,7 @@ export default function MessageBody() {
 
   return (
     <Box
-      h="calc(100vh - 270px)"
+      h="calc(100vh - 170px)"
       sx={{
         display: "flex",
         flexDirection: "column",
@@ -17,8 +17,6 @@ export default function MessageBody() {
         {conversations.map((item) => {
           return (
             <Card
-              // radius="md"
-              // color="indigo"
               sx={{
                 display: "flex",
                 flexDirection:
