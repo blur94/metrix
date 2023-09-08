@@ -43,14 +43,14 @@ function Conversations() {
         <Grid.Col md={4} sm={12}>
           <Contacts toggle={open} />
         </Grid.Col>
-        <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
+        <MediaQuery smallerThan="md" styles={{ display: "none" }}>
           <Grid.Col md={8} sm={12}>
             <Message />
           </Grid.Col>
         </MediaQuery>
       </Grid>
 
-      <MediaQuery largerThan="sm" styles={{ display: "none" }}>
+      <MediaQuery largerThan="md" styles={{ display: "none" }}>
         <Drawer
           opened={opened}
           onClose={close}
