@@ -1,12 +1,23 @@
-import { Paper, Divider, Text, Flex } from "@mantine/core";
+import { Paper, Divider, Text, Flex, useMantineTheme } from "@mantine/core";
 import MessageHead from "./messageHead";
 import MessageBody from "./messageBody";
 import MessageStore from "@/store/message.store";
 
 export default function Message() {
+  const theme = useMantineTheme();
   const { user, conversations } = MessageStore();
   return (
-    <Paper withBorder p="md" radius="md" h="calc(100vh - 70px)">
+    <Paper
+      withBorder
+      p="md"
+      radius="md"
+      h="calc(100vh - 170px)"
+      sx={{
+        [theme.fn.smallerThan("md")]: {
+          height: "calc(100vh - 70px)",
+        },
+      }}
+    >
       {conversations.length ? (
         <>
           <MessageHead />
