@@ -244,6 +244,11 @@
   dependencies:
     "@mantine/utils" "6.0.17"
 
+"@mantine/colors-generator@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@mantine/colors-generator/-/colors-generator-7.0.0.tgz#a83ba5d8a06ebbf256fd5446260ea2feaa1cac0f"
+  integrity sha512-xPZbwaJMbIKSqt5UNj1tG4VbY+GlLXKhCU3dVqH4++3girI8fbSjsdx01zQLshYQlKieyIamQjDYcBYIpthNtA==
+
 "@mantine/core@^6.0.17":
   version "6.0.17"
   resolved "https://registry.yarnpkg.com/@mantine/core/-/core-6.0.17.tgz#734b31c79199a9cf2bfb0bbd7482f5c2c411ff9a"
@@ -724,6 +729,11 @@ chart.js@^4.3.2:
     readdirp "~3.6.0"
   optionalDependencies:
     fsevents "~2.3.2"
+
+chroma-js@^2.4.2:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/chroma-js/-/chroma-js-2.4.2.tgz#dffc214ed0c11fa8eefca2c36651d8e57cbfb2b0"
+  integrity sha512-U9eDw6+wt7V8z5NncY2jJfZa+hUH8XEj8FQHgFJTrUFnJfXYf4Ml4adI2vXZOjqRDpFWtYVWypDfZwnJ+HIR4A==
 
 client-only@0.0.1:
   version "0.0.1"
