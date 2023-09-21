@@ -1,15 +1,13 @@
 import "@/styles/globals.scss";
 
 import { AppProps } from "next/app";
-import { Box, MantineProvider } from "@mantine/core";
+import { MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
-import { Poppins, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 
 import { cache } from "@/cache";
 import { RouterTransition } from "@/components/RouterTransitions";
-import HeadMeta from "@/components/Head";
-import HeaderComponent from "@/components/NavBar";
-// import { NavHeader } from "@/components/NavBar";
+import { myColors } from "@/constants/theme";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +21,9 @@ export default function App(props: AppProps) {
       theme={{
         colorScheme: "light",
         fontFamily: `${inter.style.fontFamily}`,
-        colors: {},
+        colors: {
+          brown: [...myColors.paleBrown],
+        },
         defaultRadius: 0,
         primaryColor: "indigo",
       }}
@@ -32,7 +32,7 @@ export default function App(props: AppProps) {
       <RouterTransition />
       <Notifications position="top-center" />
       {/* <Box> */}
-        <Component {...pageProps} />
+      <Component {...pageProps} />
       {/* </Box> */}
     </MantineProvider>
   );
