@@ -22,7 +22,7 @@ export default function App(props: AppProps) {
         colorScheme: "light",
         fontFamily: `${inter.style.fontFamily}`,
         colors: {
-          brown: [...myColors.paleBrown.slice(0, 10)],
+          brown: [...myColors.paleBrown],
         },
         defaultRadius: 0,
         primaryColor: "indigo",
