@@ -1,4 +1,6 @@
 import withLayout from "@/layouts/appLayout";
+import CorporateBusiness from "@/views/business/CorporateBusiness";
+import { Box } from "@mantine/core";
 import React from "react";
 
 const breadcrumbsItem = [
@@ -7,7 +9,9 @@ const breadcrumbsItem = [
 ];
 
 function Customers() {
-  return <div>Customers</div>;
+  return <Box>
+    <CorporateBusiness />
+  </Box>;
 }
 
 export default withLayout(
