@@ -4,11 +4,8 @@ import {
   Button,
   Center,
   Container,
-  Group,
   LoadingOverlay,
   Paper,
-  PinInput,
-  Select,
   TextInput,
   NumberInput,
   Text,
@@ -17,22 +14,17 @@ import {
   rem,
 } from "@mantine/core";
 import { useForm, zodResolver } from "@mantine/form";
-// import axios from "axios";
-import { DateInput } from "@mantine/dates";
+
 import { IconAlertCircle } from "@tabler/icons-react";
 import { IoAddCircleOutline } from "react-icons/io5";
-import error from "next/error";
-import { useEffect, useState } from "react";
-// import { IErrors, corporateBusinessValidator } from "@/utils/validators";
+import {  useState } from "react";
+
 import {
   CBusinessProp,
   CBusinessSchema,
   corporateBusinessValues,
   directorsValue,
 } from "@/utils/business";
-// import Cookies from "js-cookie";
-// import FileUploader from "@/components/Dropzone";
-// import { auth } from "@/constants/url";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -51,7 +43,6 @@ const useStyles = createStyles((theme) => ({
   },
 
   form: {
-    // minHeight: "100vh",
     padding: "0 15px",
     maxWidth: rem(500),
     paddingTop: rem(50),
@@ -71,9 +62,6 @@ const useStyles = createStyles((theme) => ({
 
   title: {
     color: theme.colorScheme === "dark" ? theme.white : theme.black,
-    // position: 'fixed',
-    // top: theme.spacing.xl,
-    // marginBlockEnd: rem(20),
   },
 
   description: {
@@ -102,19 +90,6 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-interface Directors {
-  name: string;
-  email: string;
-  phoneNum: string;
-  idType: string;
-  idFile: string;
-}
-
-interface FormValues {
-  rcNum: string;
-  directors: Directors[];
-}
-
 export default function CorporateBusiness() {
   const { classes } = useStyles();
   const [visible, setVisible] = useState(false);
@@ -137,22 +112,6 @@ export default function CorporateBusiness() {
     } else {
       setError("You can only have two directors");
     }
-  };
-
-  type DirectorField = keyof Directors;
-  type DirectorFieldValue<T extends DirectorField> = Directors[T];
-
-  const handleDirectorChange = (
-    index: number,
-    fieldName: keyof Directors,
-    value: any
-  ) => {
-    const updatedDirectors = [...form.values.directors];
-    const updatedDirector = { ...updatedDirectors[index], [fieldName]: value };
-
-    updatedDirectors[index] = updatedDirector;
-
-    form.setFieldValue("directors", updatedDirectors);
   };
 
   const handleSubmit = async () => {
