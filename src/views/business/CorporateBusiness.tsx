@@ -17,7 +17,9 @@ import { useForm, zodResolver } from "@mantine/form";
 
 import { IconAlertCircle } from "@tabler/icons-react";
 import { IoAddCircleOutline } from "react-icons/io5";
-import {  useState } from "react";
+import { useState, useRef } from "react";
+import { jsPDF } from "jspdf";
+import html2canvas from "html2canvas";
 
 import {
   CBusinessProp,
@@ -94,14 +96,12 @@ export default function CorporateBusiness() {
   const { classes } = useStyles();
   const [visible, setVisible] = useState(false);
   const [error, setError] = useState("");
+  const pdfRef = useRef<HTMLDivElement | null>(null);
 
   const form = useForm<CBusinessProp>({
     initialValues: corporateBusinessValues,
     validate: zodResolver(CBusinessSchema),
   });
-
-  console.log(form.errors);
-  console.log(form.values);
 
   const handleAddDirector = () => {
     if (form.values.directors.length < 2) {
@@ -131,10 +131,97 @@ export default function CorporateBusiness() {
     // }
   };
 
+  const handlePdfDownload = async () => {
+    const content = pdfRef.current;
+    if (!content) return;
+    const doc = new jsPDF({
+      //  autoPaging: true,
+      orientation: "portrait",
+      unit: "px",
+      format: "a4",
+      compress: true,
+      putOnlyUsedFonts: true,
+      floatPrecision: 16,
+      // lineHeightFactor: 1.15,
+      hotfixes: ["px_scaling"],
+    });
+
+    doc.html(content, {
+      callback: async function (doc) {
+        doc.save(`${Math.floor(Date.now() / 1000)}.pdf`);
+      },
+      x: 10,
+      y: 0,
+    });
+  };
+
+  // const handlePdfDownload = async () => {
+  //   // setLoading(true);
+  //   const data = pdfRef.current;
+  //   if (!data) return;
+
+  //   html2canvas(data, {
+  //     allowTaint: true,
+  //     useCORS: true,
+  //   }).then(async (canvas) => {
+  //     const imgWidth = 208;
+  //     const pageHeight = 295;
+  //     const imgHeight = (canvas.height * imgWidth) / canvas.width;
+  //     let heightLeft = imgHeight;
+  //     let position = 0;
+  //     heightLeft -= pageHeight;
+  //     const doc = new jsPDF("p", "mm");
+  //     doc.addImage(canvas, "PNG", 0, position, imgWidth, imgHeight, "", "FAST");
+  //     while (heightLeft >= 0) {
+  //       position = heightLeft - imgHeight;
+  //       doc.addPage();
+  //       doc.addImage(
+  //         canvas,
+  //         "PNG",
+  //         0,
+  //         position,
+  //         imgWidth,
+  //         imgHeight,
+  //         "",
+  //         "FAST"
+  //       );
+  //       heightLeft -= pageHeight;
+  //     }
+  //   });
+  // };
+
+  const downloadPDF = async () => {
+    const input = pdfRef.current;
+    if (!input) return;
+    html2canvas(input).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF("p", "pt", "a5", true);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = pdf.internal.pageSize.getHeight();
+      const imgWidth = canvas.width;
+      const imgHeight = canvas.height;
+      const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+      const imgX = (pdfWidth - imgWidth * ratio) / 2;
+      const imgY = 30;
+      pdf.addImage(
+        imgData,
+        "PNG",
+        imgX,
+        imgY,
+        imgWidth * ratio,
+        imgHeight * ratio
+      );
+      pdf.save(`${Math.floor(Date.now() / 1000)}.pdf`);
+    });
+  };
+
   return (
-    <Container>
+    <Container
+    // ref={(el) => (pdfRef.current = el)}
+    // ref={pdfRef}
+    >
       <Center mx="auto">
-        <Paper className={classes.form} radius={0}>
+        <Paper className={classes.form} radius={0} ref={pdfRef}>
           <Box className={classes.innerForm} pos="relative" mb={30}>
             <LoadingOverlay visible={visible} overlayBlur={2} />
             <Center>
@@ -267,6 +354,16 @@ export default function CorporateBusiness() {
           </Box>
         </Paper>
       </Center>
+            <Button
+              fullWidth
+              mt="xl"
+              size="md"
+              // onClick={handlePdfDownload}
+              onClick={downloadPDF}
+              mb={50}
+            >
+              Download PDF
+            </Button>
     </Container>
   );
 }
