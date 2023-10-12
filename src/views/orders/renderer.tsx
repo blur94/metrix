@@ -30,7 +30,7 @@ export default function Renderer() {
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  download="your-document.pdf"
+                  download={`AGR-${Math.floor(Date.now() / 1000)}.pdf`}
                 >
                   Download PDF
                 </a>
