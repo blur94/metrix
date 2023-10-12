@@ -1,0 +1,1 @@
+export const CORE = process.env.NEXT_PUBLIC_CORE_SERVER;

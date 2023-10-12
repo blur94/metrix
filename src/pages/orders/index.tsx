@@ -1,4 +1,10 @@
 import withLayout from "@/layouts/appLayout";
+import dynamic from "next/dynamic";
+// import Renderer from "@/views/orders/renderer";
+
+const Renderer = dynamic(() => import("../../views/orders/renderer"), {
+  ssr: false,
+});
 
 const breadcrumbsItem = [
   { title: "", href: "/" },
@@ -6,12 +12,11 @@ const breadcrumbsItem = [
 ];
 
 function Orders() {
-  return <div>Orders</div>;
+  return (
+    <div>
+      <Renderer />
+    </div>
+  );
 }
 
-export default withLayout(
-  Orders,
-  "Orders",
-  "Orders",
-  breadcrumbsItem
-);
+export default withLayout(Orders, "Orders", "Orders", breadcrumbsItem);
