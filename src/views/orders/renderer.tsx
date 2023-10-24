@@ -4,6 +4,7 @@ import axios from "axios";
 import Viewer from "./agreementPdfViewer";
 import { CORE } from "@/constants/url";
 import RenderPdf from "./renderPDF";
+import EmbedPDF from "./embedPDF";
 
 export default function Renderer() {
   const handleUpload = async (blob: Blob) => {
@@ -32,7 +33,8 @@ export default function Renderer() {
                   margin: "0 auto",
                 }}
               >
-                <RenderPdf pdfUrl={url} />
+                {/* <RenderPdf pdfUrl={url} /> */}
+                <EmbedPDF pdfUrl={url} />
 
                 {/* <a
                   href={url}
