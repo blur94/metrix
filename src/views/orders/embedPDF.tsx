@@ -1,6 +1,6 @@
 import { Box, Center } from "@mantine/core";
 import React from "react";
-import { randomId } from "@mantine/hooks";gcb 
+import { randomId } from "@mantine/hooks"; 
 import ReactViewAdobe from "react-adobe-embed";
 import { adobe_api_key } from "@/constants/url";
 
