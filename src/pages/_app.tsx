@@ -1,4 +1,6 @@
 import "@/styles/globals.scss";
+import "@react-pdf-viewer/core/lib/styles/index.css";
+import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 
 import { AppProps } from "next/app";
 import { MantineProvider } from "@mantine/core";

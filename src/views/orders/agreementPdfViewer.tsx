@@ -78,7 +78,15 @@ Font.register({
 });
 
 const Viewer = () => (
-  <Document>
+  <Document
+    author="Gilead"
+    creator="Gilead"
+    keywords="agreement, tenancy agreement"
+    pdfVersion="1.7ext3"
+    title="Tenancy Agreement"
+    producer="Recurrent"
+    subject="Sign Agreement"
+  >
     <PageTwo />
   </Document>
 );

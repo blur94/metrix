@@ -1,9 +1,9 @@
 import { BlobProvider } from "@react-pdf/renderer";
 import axios from "axios";
 
-import Viewer from "./agreementPdfViewer";
+import Viewer from "../orders/agreementPdfViewer";
 import { CORE } from "@/constants/url";
-import EmbedPDF from "./embedPDF";
+import PdfViewer from "./pdfViewer";
 
 export default function Renderer() {
   const handleUpload = async (blob: Blob) => {
@@ -32,18 +32,7 @@ export default function Renderer() {
                   margin: "0 auto",
                 }}
               >
-                {/* <RenderPdf pdfUrl={url} /> */}
-                <EmbedPDF pdfUrl={url} />
-
-                {/* <a
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  download={`AGR-${Math.floor(Date.now() / 1000)}.pdf`}
-                >
-                  Download PDF
-                </a>
-                <button onClick={() => handleUpload(blob)}>Upload PDF</button> */}
+                <PdfViewer pdfUrl={url} />
               </div>
             )}
           </div>
