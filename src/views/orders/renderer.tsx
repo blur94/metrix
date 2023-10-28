@@ -3,7 +3,6 @@ import axios from "axios";
 
 import Viewer from "./agreementPdfViewer";
 import { CORE } from "@/constants/url";
-import RenderPdf from "./renderPDF";
 import EmbedPDF from "./embedPDF";
 
 export default function Renderer() {
