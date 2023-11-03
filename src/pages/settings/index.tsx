@@ -5,13 +5,8 @@ const breadcrumbsItem = [
   { title: "Settings", href: "/settings" },
 ];
 
-function Orders() {
+function Settings() {
   return <div>Settings</div>;
 }
 
-export default withLayout(
-  Orders,
-  "Orders",
-  "Orders",
-  breadcrumbsItem
-);
+export default withLayout(Settings, "Settings", "Settings", breadcrumbsItem);
